@@ -1,0 +1,324 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json",
+  "actions": [
+    {
+      "verb": "createSPList",
+      "listName": "Time Off Requests",
+      "templateType": 100,
+      "subactions": [
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field ID=\"{fa564e0f-0c70-4ab9-b863-0177e6ddd247}\" Type=\"Text\" Name=\"Title\" DisplayName=\"Title\" Required=\"FALSE\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"Title\" FromBaseType=\"TRUE\" MaxLength=\"255\" Indexed=\"FALSE\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Choice\" DisplayName=\"Request Status\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Format=\"Dropdown\" FillInChoice=\"FALSE\" ID=\"{13b13722-abb6-4076-9852-dabcc6d9078a}\" StaticName=\"Request_x0020_Status\" Name=\"Request_x0020_Status\"><Default>New</Default><CHOICES><CHOICE>New</CHOICE><CHOICE>Change</CHOICE><CHOICE>Cancel</CHOICE></CHOICES></Field>"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Choice\" DisplayName=\"Type of Leave\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Format=\"Dropdown\" FillInChoice=\"FALSE\" ID=\"{07aaefaa-3bf0-4df2-ac97-44b10373bff8}\" StaticName=\"Type_x0020_of_x0020_Leave\" Name=\"Type_x0020_of_x0020_Leave\"><CHOICES><CHOICE>Bereavement</CHOICE><CHOICE>Floater Day</CHOICE><CHOICE>Jury Duty</CHOICE><CHOICE>Maternity/Paternity</CHOICE><CHOICE>Military</CHOICE><CHOICE>Sick</CHOICE><CHOICE>Time Off Without Pay</CHOICE><CHOICE>Vacation</CHOICE><CHOICE>Other (explain in Comments section)</CHOICE></CHOICES></Field>"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Text\" DisplayName=\"Request Description (Brief)\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" MaxLength=\"255\" ID=\"{eae7cefc-6fdb-4009-b83e-78dc6cc71d07}\" StaticName=\"Request_x0020_Description_x0020_\" Name=\"Request_x0020_Description_x0020_\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"User\" DisplayName=\"Employee Name\" List=\"UserInfo\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" ShowField=\"ImnName\" UserSelectionMode=\"PeopleOnly\" UserSelectionScope=\"0\" ID=\"{2b17bdec-ff31-4781-82a1-16d2735e0404}\" StaticName=\"Employee_x0020_Name\" Name=\"Employee_x0020_Name\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"User\" DisplayName=\"Supervisor\" List=\"UserInfo\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" ShowField=\"ImnName\" UserSelectionMode=\"PeopleOnly\" UserSelectionScope=\"0\" ID=\"{257932a6-3e28-46c9-9dc8-ab23ca4db2b5}\" StaticName=\"Supervisor\" Name=\"Supervisor\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"DateTime\" DisplayName=\"Begin Date\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Format=\"DateTime\" FriendlyDisplayFormat=\"Disabled\" ID=\"{4d09e3d9-352a-432b-a070-144b2411fe22}\" StaticName=\"Begin_x0020_Date\" Name=\"Begin_x0020_Date\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"DateTime\" DisplayName=\"End Date\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Format=\"DateTime\" FriendlyDisplayFormat=\"Disabled\" ID=\"{7984fc9f-ba06-490d-803e-fc103864ca63}\" StaticName=\"End_x0020_Date\" Name=\"End_x0020_Date\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Number\" DisplayName=\"Paid Time Off Requested\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Decimals=\"0\" ID=\"{5a29697d-4927-4b71-b9d6-d524935d4b28}\" StaticName=\"Paid_x0020_Time_x0020_Off_x0020_\" Name=\"Paid_x0020_Time_x0020_Off_x0020_\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Number\" DisplayName=\"Unpaid Time Off Requested\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Decimals=\"0\" ID=\"{021d7074-5114-43eb-b45d-ad091baf01ee}\" StaticName=\"Unpaid_x0020_Time_x0020_Off_x002\" Name=\"Unpaid_x0020_Time_x0020_Off_x002\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Note\" DisplayName=\"Employee Comments\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" NumLines=\"12\" RichText=\"FALSE\" Sortable=\"FALSE\" ID=\"{96e71c8f-e5e7-4fda-ad48-bdf5972248e8}\" StaticName=\"Employee_x0020_Comments\" Name=\"Employee_x0020_Comments\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field DisplayName=\"LOA_Request_WF\" Type=\"WorkflowStatus\" Required=\"FALSE\" ID=\"{0871b907-e79e-46e1-9e85-01693cd4bae6}\" StaticName=\"LOAReque\" Name=\"LOAReque\" WorkflowStatusURL=\"_layouts/15/WrkStat.aspx\" ReadOnly=\"TRUE\"><CHOICES><CHOICE>Starting</CHOICE><CHOICE>Failed on Start</CHOICE><CHOICE>In Progress</CHOICE><CHOICE>Error Occurred</CHOICE><CHOICE>Canceled</CHOICE><CHOICE>Completed</CHOICE><CHOICE>Failed on Start (retrying)</CHOICE><CHOICE>Error Occurred (retrying)</CHOICE><CHOICE /><CHOICE /><CHOICE /><CHOICE /><CHOICE /><CHOICE /><CHOICE /><CHOICE>Canceled</CHOICE><CHOICE>Approved</CHOICE><CHOICE>Rejected</CHOICE></CHOICES></Field>"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Calculated\" DisplayName=\"LOA Req #\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" Format=\"DateOnly\" LCID=\"1033\" ResultType=\"Text\" ReadOnly=\"TRUE\" ID=\"{8edf952c-3d20-4948-a3c2-e7e52d0a463c}\" StaticName=\"LOA_x0020_Req_x0020__x0023_\" Name=\"LOA_x0020_Req_x0020__x0023_\"><Formula>=ID</Formula><FieldRefs><FieldRef Name=\"ID\" /></FieldRefs></Field>"
+        },
+        {
+          "verb": "addSPView",
+          "name": "All Items",
+          "viewFields": [
+            "LOA_x0020_Req_x0020__x0023_",
+            "Request_x0020_Status",
+            "Type_x0020_of_x0020_Leave",
+            "Request_x0020_Description_x0020_",
+            "Employee_x0020_Name",
+            "Supervisor",
+            "Begin_x0020_Date",
+            "End_x0020_Date",
+            "Paid_x0020_Time_x0020_Off_x0020_",
+            "Unpaid_x0020_Time_x0020_Off_x002",
+            "Employee_x0020_Comments",
+            "LOAReque"
+          ],
+          "query": "",
+          "rowLimit": 30,
+          "isPaged": true,
+          "replaceViewFields": true
+        },
+        {
+          "verb": "addSPView",
+          "name": "MyLOARequests",
+          "viewFields": [
+            "LOA_x0020_Req_x0020__x0023_",
+            "Request_x0020_Status",
+            "Type_x0020_of_x0020_Leave",
+            "Request_x0020_Description_x0020_",
+            "Employee_x0020_Name",
+            "Supervisor",
+            "Begin_x0020_Date",
+            "End_x0020_Date",
+            "Paid_x0020_Time_x0020_Off_x0020_",
+            "Unpaid_x0020_Time_x0020_Off_x002",
+            "Employee_x0020_Comments"
+          ],
+          "query": "<Where><Eq><FieldRef Name=\"Employee_x0020_Name\" /><Value Type=\"Integer\"><UserID Type=\"Integer\" /></Value></Eq></Where>",
+          "rowLimit": 30,
+          "isPaged": true,
+          "makeDefault": true,
+          "addLink": "Time Off Requests",
+          "replaceViewFields": true
+        }
+      ]
+    },
+	{
+      "verb": "createSPList",
+      "listName": "Time Off Calendar",
+      "templateType": 106,
+      "subactions": [
+        {
+          "verb": "addContentType",
+          "name": "Event"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field ID=\"{8137f7ad-9170-4c1d-a17b-4ca7f557bc88}\" Name=\"ParticipantsPicker\" DisplayName=\"Attendees\" Type=\"UserMulti\" List=\"UserInfo\" Mult=\"TRUE\" Required=\"FALSE\" ShowField=\"ImnName\" UserSelectionMode=\"PeopleAndGroups\" UserSelectionScope=\"0\" Sortable=\"FALSE\" Sealed=\"FALSE\" AllowDeletion=\"FALSE\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"ParticipantsPicker\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field ID=\"{6df9bd52-550e-4a30-bc31-a4366832a87d}\" Name=\"Category\" DisplayName=\"Category\" Type=\"Choice\" Format=\"Dropdown\" FillInChoice=\"TRUE\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"Category\"><CHOICES><CHOICE>Meeting</CHOICE><CHOICE>Work hours</CHOICE><CHOICE>Business</CHOICE><CHOICE>Holiday</CHOICE><CHOICE>Get-together</CHOICE><CHOICE>Gifts</CHOICE><CHOICE>Birthday</CHOICE><CHOICE>Anniversary</CHOICE></CHOICES><Default /></Field>"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field ID=\"{a4e7b3e1-1b0a-4ffa-8426-c94d4cb8cc57}\" Name=\"Facilities\" DisplayName=\"Resources\" Type=\"Facilities\" Mult=\"TRUE\" ShowField=\"Title\" Sortable=\"FALSE\" CanToggleHidden=\"TRUE\" Sealed=\"FALSE\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"Facilities\" />"
+        },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "<Field Type=\"Text\" DisplayName=\"LOA Request #\" Required=\"TRUE\" EnforceUniqueValues=\"FALSE\" Indexed=\"FALSE\" MaxLength=\"255\" ID=\"{975b03f2-edaf-4c0f-a52a-e99ad915c1f7}\" StaticName=\"LOA_x0020_Request_x0020__x0023_\" Name=\"LOA_x0020_Request_x0020__x0023_\" />"
+        },
+        {
+          "verb": "addSPView",
+          "name": "All Events",
+          "viewFields": [
+            "fRecurrence",
+            "WorkspaceLink",
+            "LinkTitle",
+            "Location",
+            "EventDate",
+            "EndDate",
+            "fAllDayEvent"
+          ],
+          "query": "<OrderBy><FieldRef Name=\"EventDate\" /></OrderBy>",
+          "rowLimit": 30,
+          "isPaged": true,
+          "replaceViewFields": true
+        },
+        {
+          "verb": "addSPView",
+          "name": "Calendar",
+          "viewFields": [
+            "EventDate",
+            "EndDate",
+            "fRecurrence",
+            "EventType",
+            "WorkspaceLink",
+            "Title",
+            "Location",
+            "Description",
+            "Workspace",
+            "MasterSeriesItemID",
+            "fAllDayEvent",
+            "LOA_x0020_Request_x0020__x0023_"
+          ],
+          "query": "<Where><DateRangesOverlap><FieldRef Name=\"EventDate\" /><FieldRef Name=\"EndDate\" /><FieldRef Name=\"RecurrenceID\" /><Value Type=\"DateTime\"><Month /></Value></DateRangesOverlap></Where>",
+          "rowLimit": 30,
+          "isPaged": true,
+          "makeDefault": true,
+          "replaceViewFields": true
+        },
+        {
+          "verb": "addSPView",
+          "name": "Current Events",
+          "viewFields": [
+            "fRecurrence",
+            "WorkspaceLink",
+            "LinkTitle",
+            "Location",
+            "EventDate",
+            "EndDate",
+            "fAllDayEvent"
+          ],
+          "query": "<Where><DateRangesOverlap><FieldRef Name=\"EventDate\" /><FieldRef Name=\"EndDate\" /><FieldRef Name=\"RecurrenceID\" /><Value Type=\"DateTime\"><Now /></Value></DateRangesOverlap></Where><OrderBy><FieldRef Name=\"EventDate\" /></OrderBy>",
+          "rowLimit": 30,
+          "isPaged": true,
+          "replaceViewFields": true
+        }
+      ]
+    },
+    {
+      "verb": "setSiteBranding",
+      "navigationLayout": "Cascade",
+      "headerLayout": "Compact",
+      "headerBackground": "Strong",
+      "showFooter": false
+    },
+    {
+      "verb": "applyTheme",
+      "themeJson": {
+        "version": "2",
+        "isInverted": false,
+        "palette": {
+          "themePrimary": "#ff03787c",
+          "themeLighterAlt": "#fff0f9fa",
+          "themeLighter": "#ffc5e9ea",
+          "themeLight": "#ff98d6d8",
+          "themeTertiary": "#ff49aeb1",
+          "themeSecondary": "#ff13898d",
+          "themeDarkAlt": "#ff026d70",
+          "themeDark": "#ff025c5f",
+          "themeDarker": "#ff014446",
+          "accent": "#ff4f6bed",
+          "neutralDark": "#ff212121",
+          "neutralPrimary": "#ff333333",
+          "neutralPrimaryAlt": "#ff3c3c3c",
+          "neutralSecondary": "#ff666666",
+          "neutralSecondaryAlt": "#ff767676",
+          "neutralTertiary": "#ffa6a6a6",
+          "neutralTertiaryAlt": "#ffc8c8c8",
+          "neutralQuaternary": "#ffd0d0d0",
+          "neutralQuaternaryAlt": "#ffdadada",
+          "neutralLight": "#ffeaeaea",
+          "neutralLighter": "#fff4f4f4",
+          "neutralLighterAlt": "#fff8f8f8",
+          "red": "#ffe81123",
+          "redDark": "#ffa80000",
+          "black": "#ff000000",
+          "white": "#ffffffff",
+          "primaryBackground": "#ffffffff",
+          "primaryText": "#ff333333",
+          "HyperlinkActive": "#ff014446",
+          "CommandLinksPressed": "#ff014446",
+          "NavigationPressed": "#ff014446",
+          "EmphasisHoverBorder": "#ff014446",
+          "TopBarPressedText": "#ff014446",
+          "HeaderNavigationPressedText": "#ff014446",
+          "Hyperlinkfollowed": "#ff014446",
+          "EmphasisHoverBackground": "#ff025c5f",
+          "EmphasisBorder": "#ff025c5f",
+          "AccentText": "#ff03787c",
+          "CommandLinksHover": "#ff03787c",
+          "RowAccent": "#ff03787c",
+          "NavigationAccent": "#ff03787c",
+          "NavigationHover": "#ff03787c",
+          "EmphasisBackground": "#ff03787c",
+          "HeaderNavigationHoverText": "#ff03787c",
+          "HeaderNavigationSelectedText": "#ff03787c",
+          "SuiteBarBackground": "#ff03787c",
+          "Hyperlink": "#ff03787c",
+          "ContentAccent1": "#ff03787c",
+          "AccentLines": "#ff13898d",
+          "HeaderAccentLines": "#ff13898d",
+          "ButtonPressedBorder": "#ff13898d",
+          "SuiteBarHoverBackground": "#ff49aeb1",
+          "StrongLines": "#ff98d6d8",
+          "HeaderStrongLines": "#ff98d6d8",
+          "SuiteBarHoverText": "#ff98d6d8",
+          "ButtonPressedBackground": "#ff98d6d8",
+          "ButtonHoverBorder": "#ff98d6d8",
+          "ButtonHoverBackground": "#ffc5e9ea",
+          "SelectionBackground": "#7f98d6d8",
+          "HoverBackground": "#7fc5e9ea",
+          "NavigationHoverBackground": "#7fc5e9ea",
+          "PageBackground": "#ffffffff",
+          "EmphasisText": "#ffffffff",
+          "SuiteBarText": "#ffffffff",
+          "TileText": "#ffffffff",
+          "BackgroundOverlay": "#d8ffffff",
+          "HeaderBackground": "#d8ffffff",
+          "FooterBackground": "#d8ffffff",
+          "DisabledBackground": "#fff8f8f8",
+          "HeaderDisabledBackground": "#fff8f8f8",
+          "ButtonBackground": "#fff8f8f8",
+          "ButtonDisabledBackground": "#fff8f8f8",
+          "SubtleEmphasisBackground": "#fff4f4f4",
+          "DialogBorder": "#fff4f4f4",
+          "NavigationSelectedBackground": "#c6eaeaea",
+          "TopBarBackground": "#c6eaeaea",
+          "DisabledLines": "#ffeaeaea",
+          "HeaderDisabledLines": "#ffeaeaea",
+          "ButtonDisabledBorder": "#ffeaeaea",
+          "SuiteBarDisabledText": "#ffeaeaea",
+          "SubtleLines": "#ffc8c8c8",
+          "HeaderSubtleLines": "#ffc8c8c8",
+          "ButtonGlyphDisabled": "#ffc8c8c8",
+          "DisabledText": "#ffa6a6a6",
+          "CommandLinksDisabled": "#ffa6a6a6",
+          "HeaderDisableText": "#ffa6a6a6",
+          "ButtonDisabledText": "#ffa6a6a6",
+          "Lines": "#ffa6a6a6",
+          "HeaderLines": "#ffa6a6a6",
+          "ButtonBorder": "#ffa6a6a6",
+          "SubtleBodyText": "#ff767676",
+          "HeaderSubtleText": "#ff767676",
+          "CommandLinks": "#ff666666",
+          "Navigation": "#ff666666",
+          "SubtleEmphasisText": "#ff666666",
+          "TopBarText": "#ff666666",
+          "HeaderNavigationText": "#ff666666",
+          "ButtonGlyph": "#ff666666",
+          "BodyText": "#ff333333",
+          "WebPartHeading": "#ff333333",
+          "HeaderText": "#ff333333",
+          "ButtonText": "#ff333333",
+          "ButtonGlyphActive": "#ff333333",
+          "TopBarHoverText": "#ff333333",
+          "StrongBodyText": "#ff212121",
+          "SiteTitle": "#ff212121",
+          "CommandLinksSecondary": "#ff212121",
+          "SubtleEmphasisCommandLinks": "#ff212121",
+          "HeaderSiteTitle": "#ff212121",
+          "TileBackgroundOverlay": "#7f000000",
+          "ContentAccent2": "#ff00485b",
+          "ContentAccent3": "#ff288054",
+          "ContentAccent4": "#ff767956",
+          "ContentAccent5": "#ffed0033",
+          "ContentAccent6": "#ff682a7a"
+        }
+      }
+    }
+  ]
+}
