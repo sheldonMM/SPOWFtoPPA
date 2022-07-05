@@ -1,0 +1,6 @@
+SharePoint modernization scanner - Documentation:
+https://docs.microsoft.com/en-us/sharepoint/dev/transform/modernize-scanner
+
+Direct Link: (validate the download link from the above documentation)
+https://github.com/SharePoint/sp-dev-modernization/blob/dev/Tools/SharePoint.Modernization/Releases/SharePoint.Modernization.Scanner.exe?raw=true
+

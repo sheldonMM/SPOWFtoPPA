@@ -1,0 +1,63 @@
+Please, follow this readme to deploy and configure the Hackathon sites to your SPO Tenant.
+
+Pre-requisites:
+---------------
+---------------
+ - PowerShell 5 - The Script was tested using PowerShell 5. PowerShell 7 threw some errors due it not being fully compatible with AzureAD module.
+ 
+ - SharePoint Online Managament Shell - You can install it from the PowerShell Gallery (https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell)
+   Install-Module -Name Microsoft.Online.SharePoint.PowerShell
+   
+ - Azure Active Directory PowerShell module - You can install it running the following cmdlet (https://www.powershellgallery.com/packages/AzureAD/2.0.2.106):
+   Install-Module -Name AzureAD
+ 
+ - Deployment files inside 'Hackathon_Deployment_Files.zip' - Provided to you. The Zip file will contain the following files:
+	 - 'Hackathon_Deployment_Script.ps1' - Script that will create user accounts and site collections
+	 - 'AddSiteColAdmins_Script.ps1' - Script that will add user accounts as site collection administrators
+	 - 'SiteScript.txt' - Site Script to be applied to site collections
+	
+Steps:
+------
+------
+ *** NOTE: Before running the script, make sure you have enough licenses available for your new users, otherwise, the script will fail letting you know about the lack of licenses.
+ 
+ 1 - Download and extract 'Hackathon_Deployment_Files.zip' to your computer
+ 2 - Don't alter the hierarchy of the files
+ 3 - Run the script 'Hackathon_Deployment_Script.ps1' from a PowerShell console as an Administrator (you can also open it and run it in PowerShell ISE)
+
+ 4 - You will be asked to provide the following input:
+         - Tenant Name: for example -  MOD123456x
+         - Global Admin account: for example - admin@MOD123456x.onmicrosoft.com
+	 - Number of Sites/Users to create ($numOfSites)
+	 - License Type: '1' for E3 or '2' for E5
+	 
+ 5 - The script will create whatever number of users and site collections specified.
+     The global admin will be added as the manager for those users in Azure AD.
+     Users will have the following UPNs with the following password: H4ck4th0n
+    - user1@Tenant.onmicrosoft.com
+    - user2@Tenant.onmicrosoft.com
+    - user3@Tenant.onmicrosoft.com
+    - user4@Tenant.onmicrosoft.com
+      [...]
+ 
+ Sites will have the following URL format:
+    - https://Tenant.sharepoint.com/sites/ContosoElectronics1
+    - https://Tenant.sharepoint.com/sites/ContosoElectronics2
+    - https://Tenant.sharepoint.com/sites/ContosoElectronics3
+    - https://Tenant.sharepoint.com/sites/ContosoElectronics4
+      [...]
+ 
+ 6 - Once the script 'Hackathon_Deployment_Script.ps1' completes successfully, run the script 'AddSiteColAdmins_Script.ps1'. 
+	 You will be asked to provide the following input:
+         - Tenant Name: for example -  MOD123456x
+         - Global Admin account: for example - admin@MOD123456x.onmicrosoft.com
+		 
+	 Once this script completes successfully, users will be set as admins in the following way:
+	   - User1 will be set as admin of site ContosoElectronics1
+	   - User2 will be set as admin of site ContosoElectronics2
+	   - User3 will be set as admin of site ContosoElectronics3
+	   - User4 will be set as admin of site ContosoElectronics4
+		 [...]
+
+
+For issues with the scripts, please contact jaimes@microsoft.com
